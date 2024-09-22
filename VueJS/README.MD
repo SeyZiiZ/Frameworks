@@ -12,6 +12,7 @@ Follow these steps to install the necessary dependencies :
    npm install node
    npm install vite
    npm create vue@latest
-   and follow the tutorial
 
-After that just copy-past the code in your App.vue
+And follow the tutorial
+
+## After that just copy-past the code in your App.vue
