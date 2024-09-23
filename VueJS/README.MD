@@ -15,4 +15,4 @@ Follow these steps to install the necessary dependencies :
 
 And follow the tutorial
 
-## After that just copy-past the code in your App.vue/ Or open the project
+## After that just copy-past the code in your App.vue / Or open the project
