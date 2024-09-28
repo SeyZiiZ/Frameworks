@@ -1,0 +1,48 @@
+{
+  "title": "Movie and Series Quiz",
+  "minimum_score": 4,
+  "success_message": "Congratulations! You are a true film enthusiast!",
+  "failure_message": "Too bad! You should watch more movies and series.",
+  "questions": [
+    {
+      "question": "In which movie can you find the character Jack Dawson?",
+      "choices": ["Titanic", "The Lord of the Rings", "Inception", "Avatar"],
+      "correct_answer": "Titanic"
+    },
+    {
+      "question": "Which series features the character Walter White?",
+      "choices": [
+        "Breaking Bad",
+        "Stranger Things",
+        "Game of Thrones",
+        "The Walking Dead"
+      ],
+      "correct_answer": "Breaking Bad"
+    },
+    {
+      "question": "In which movie does Harry Potter first meet Lord Voldemort?",
+      "choices": [
+        "Harry Potter and the Philosopher's Stone",
+        "Harry Potter and the Chamber of Secrets",
+        "Harry Potter and the Prisoner of Azkaban",
+        "Harry Potter and the Goblet of Fire"
+      ],
+      "correct_answer": "Harry Potter and the Philosopher's Stone"
+    },
+    {
+      "question": "What is the name of the artificial intelligence in '2001: A Space Odyssey'?",
+      "choices": ["HAL 9000", "Siri", "Cortana", "Jarvis"],
+      "correct_answer": "HAL 9000"
+    },
+    {
+      "question": "Who plays the lead role in the BBC series 'Sherlock'?",
+      "choices": [
+        "Benedict Cumberbatch",
+        "David Tennant",
+        "Matt Smith",
+        "Tom Hiddleston"
+      ],
+      "correct_answer": "Benedict Cumberbatch"
+    }
+  ]
+}
