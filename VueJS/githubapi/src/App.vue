@@ -1,13 +1,15 @@
 <template>
-  <div class="myDiv">
     <getInfos @sendInfos="handleInfos" v-if="!gotData"></getInfos>
     <h1 v-if="gotData && !hasFetchedData">Loading Data...</h1>
-    <ShowData :theData="fetchedData" :link="repo" v-if="fetchedData"></ShowData>
-  </div>
+    <ShowData 
+      :theData="fetchedData" 
+      v-if="fetchedData && gotData"
+      @reset="reset"
+    ></ShowData>
 </template>
 
 <script setup>
-import {ref, shallowRef, watch} from 'vue';
+import {provide, ref, shallowRef, watch} from 'vue';
 import getInfos from './components/getInfos.vue';
 import ShowData from './components/ShowData.vue';
 import { fetchData } from '../composable/fetchData';
@@ -15,6 +17,7 @@ import { fetchData } from '../composable/fetchData';
 const gotData = ref(false);
 const data = ref();
 const repo = shallowRef('');
+provide('repoLink', repo);
 const handleInfos = (infos) => {
   data.value = infos;
   gotData.value = true;
@@ -29,6 +32,11 @@ watch(gotData, async (newValue) => {
     hasFetchedData.value = true;
   }
 });
+
+const reset = () => {
+  gotData.value = false;
+  hasFetchedData.value = false;
+};
 
 </script>
 
