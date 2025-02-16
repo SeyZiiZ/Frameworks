@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Task, { ITask } from "../models/task";
+import { Mongoose, Types } from "mongoose";
 
 export const getTasks = async (req: Request, res: Response) => {
     try {
@@ -19,10 +20,11 @@ export const getTasks = async (req: Request, res: Response) => {
 
 export const getTask = async (req: Request, res: Response) => {
     try {
-        const { id } = req.query;
+        const { id, pseudo } = req.query;
         let task;
-        if(id) {
-            task = await Task.findById(id);
+
+        if(id && pseudo) {
+            task = await Task.findOne({ _id: id, pseudo: pseudo });
         }
         
         res.status(200).json(task);
@@ -39,8 +41,19 @@ export const createTask = async (req: Request, res: Response) => {
 };
 
 export const updateTask = async (req: Request, res: Response) => {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedTask);
+    try {
+        const { id } = req.params
+        const updates = req.body;
+        let updatedTask;
+
+        if(id) {
+            updatedTask = await Task.findByIdAndUpdate(id, updates, { new: true });
+        }
+
+        res.status(200).json(updatedTask);
+    } catch(error) {
+        res.status(500).json({ message: "Erreur lors de l'update de la tache", error });
+    }
 };
 
 export const deleteTask = async (req: Request, res: Response) => {

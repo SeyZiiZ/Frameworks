@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import AddTaskComponent from "../components/AddTask";
 import { getTaskById, getTasks, Task } from "../composables/apiCrudServices";
 import TaskComponent from "../components/TaskComponent";
+import NoTasks from "../components/NoTasks";
 
 const TaskManager: React.FC = () => {
     const { pseudo } = useUser();
@@ -19,7 +20,7 @@ const TaskManager: React.FC = () => {
             try {
                 setLoading(true);
                 if(taskId) {
-                    const task = await getTaskById(taskId);
+                    const task = await getTaskById(taskId, pseudo);
                     setTasks(task ? [task] : []);
                 } else {
                     const userTasks = await getTasks(pseudo);
@@ -76,7 +77,7 @@ const TaskManager: React.FC = () => {
                         ) : tasks.length > 0 ? (
                             <TaskComponent data={{ data: tasks }} onTaskDeleted={handleTaskDeleted} />
                         ) : (
-                            <p className="text-gray-500 text-center">Aucune tâche pour le moment. Commencez par en créer une !</p>
+                            <NoTasks />
                         )}
                     </>
                 ) : (

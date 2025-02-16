@@ -1,24 +1,31 @@
 import React, { useState } from "react";
+import { updateTask } from "../composables/apiCrudServices";
 
 interface UpdateTaskProps {
+  taskId: string;
   initialTitle: string;
   initialDescription: string;
-  onUpdate: (updatedTitle: string, updatedDescription: string) => void;
+  onUpdate: (updatedTask: { id: string; title: string; description: string }) => void;
   onCancel: () => void;
 }
 
-const UpdateTask: React.FC<UpdateTaskProps> = ({ initialTitle, initialDescription, onUpdate, onCancel }) => {
+const UpdateTask: React.FC<UpdateTaskProps> = ({ taskId, initialTitle, initialDescription, onUpdate, onCancel }) => {
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      onUpdate(title, description);
+
+    try {
+      const updatedTask = await updateTask(taskId, { title, description });
+      onUpdate({ id: taskId, title: updatedTask.title, description: updatedTask.description});
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour :", error);
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -27,17 +34,15 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({ initialTitle, initialDescriptio
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
           Titre
         </label>
-        <div className="flex space-x-2">
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Que devez-vous faire ?"
-            className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            required
-          />
-        </div>
+        <input
+          id="title"
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Que devez-vous faire ?"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          required
+        />
       </div>
 
       <div>

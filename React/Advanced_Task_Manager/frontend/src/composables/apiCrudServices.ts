@@ -20,11 +20,12 @@ export const getTasks = async (pseudo: string): Promise<Task[]> => {
   }
 };
 
-export const getTaskById = async (id: string): Promise<Task> => {
+export const getTaskById = async (id: string, pseudo: string): Promise<Task> => {
   try {
     const response = await axios.get<Task>(`${API_URL}/task`, {
-      params: {id}
+      params: {id, pseudo}
     });
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error(`Erreur lors de la récupération de la tâche ${id} :`, error);
@@ -44,7 +45,7 @@ export const createTask = async (task: Task): Promise<Task> => {
 
 export const updateTask = async (id: string, task: Partial<Task>): Promise<Task> => {
   try {
-    const response = await axios.put<Task>(`${API_URL}/${id}`, task);
+    const response = await axios.put<Task>(`${API_URL}/tasks/${id}`, task);
     return response.data;
   } catch (error) {
     console.error(`Erreur lors de la mise à jour de la tâche ${id} :`, error);

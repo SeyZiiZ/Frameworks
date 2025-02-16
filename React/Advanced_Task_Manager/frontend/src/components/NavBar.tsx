@@ -14,6 +14,7 @@ const NavBar: React.FC = () => {
 
     const homeTasks = () => {
         navigate("/tasks")
+        window.location.reload();
     }
 
   return (

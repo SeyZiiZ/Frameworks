@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Accueil from "./views/Accueil";
 import Tasks from "./views/TaskManager";
+import UpdateTask from "./components/UpdateTask";
 
 const App: React.FC = () => {
   return (
