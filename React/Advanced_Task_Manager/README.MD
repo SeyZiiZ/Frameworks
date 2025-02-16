@@ -66,10 +66,16 @@ npm run dev
 ```bash
 cd backend
 sudo vim .env
+```
+
+- In the .env you will find MONGO_URI and change it by you'r own cluster
+```bash 
 PORT="8080"
 MONGO_URI="You'r own mongo cluster"
 ```
+
 - And then
+
 ```bash
 npm install 
 ts-node src/server.ts
