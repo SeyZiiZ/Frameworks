@@ -64,12 +64,13 @@ npm run dev
 - Backend in dev mode (you need to build it for production) :
 - Before, update the backend .env to include you'r mongo cluster at MONGO_URI 
 ```bash
+cd backend
+sudo vim .env
 PORT="8080"
 MONGO_URI="You'r own mongo cluster"
 ```
 - And then
 ```bash
-cd backend
 npm install 
 ts-node src/server.ts
 ```
