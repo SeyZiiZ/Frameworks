@@ -66,6 +66,7 @@ npm run dev
 ```bash
 cd backend
 sudo vim .env
+OR open it in any code editor you have if you are not on linux
 ```
 
 - In the .env you will find MONGO_URI and change it by you'r own cluster
